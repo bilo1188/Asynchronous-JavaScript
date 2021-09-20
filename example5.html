@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    const getTodos = (callback) => {
+
+
+        //http status code//
+
+        const request = new XMLHttpRequest();
+        
+
+
+        request.addEventListener('readystatechange', () => {
+            if (request.readyState === 4 && request.status === 200) {
+                // console.log(request, request.responseText);
+                const data = JSON.parse(request.responseText)
+                callback(undefined , data);
+                
+            } else if (request.readyState === 4) {
+                // console.log("could not fetch the data")
+                callback('could not fetch data',undefined);
+
+
+
+            }
+
+        });
+
+
+        request.open('GET', 'todos.json');
+        request.send();
+
+
+    }
+
+
+    getTodos((err,data)=>{
+        console.log("this is fired");
+        if(data){
+            console.log(data)
+        }else{
+            console.log(err)        }
+    });
+
+
+
+</script>
+
+</html>
