@@ -54,10 +54,24 @@
 
     getTodos('https://jsonplaceholder.typicode.com/todos/').then(data => {
 
-        console.log(data);
-    }).catch(err => {
-        console.log(err);
+        console.log('1', data);
+        return getTodos('https://jsonplaceholder.typicode.com/todos/');
     })
+        .then(data => {
+
+            console.log('2', data);
+            return getTodos('https://jsonplaceholder.typicode.com/todos/');
+        })
+        .then(data => {
+
+            console.log('3', data);
+
+
+
+        })
+        .catch(err => {
+            console.log(err);
+        })
 
 
 
